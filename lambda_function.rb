@@ -1,4 +1,5 @@
 require 'json'
+require 'aws-dynamo-db'
 
 def execute(event:, context:)
   event["events"].each { |e| put_event(e) }

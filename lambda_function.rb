@@ -1,5 +1,4 @@
 require 'json'
-require 'dotenv'
 
 def execute(event:, context:)
   Dotenv.load

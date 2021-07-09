@@ -1,7 +1,6 @@
 require 'json'
 
 def execute(event:, context:)
-  Dotenv.load
   event["events"].each { |e| put_event(e) }
   { execute_status: "ok" }
 end

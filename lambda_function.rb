@@ -1,5 +1,6 @@
 require 'json'
 require 'aws-sdk-dynamodb'
+require 'dotenv'
 
 def execute(event:, context:)
   Dotenv.load

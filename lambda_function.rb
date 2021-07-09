@@ -9,14 +9,10 @@ end
 
 private
 
-def table_name
-  "tyda-event"
-end
-
 def put_event(e)
   e.store("created_at", Time.now.to_s)
   item = {
-    table_name: table_name,
+    table_name: ENV['TABLE_NAME'],
     item: e,
   }
   dynamo_client.put_item(item)

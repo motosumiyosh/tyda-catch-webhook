@@ -1,8 +1,6 @@
 require 'json'
 require 'aws-sdk-dynamodb'
 
-TABLE_NAME = "tyda-event"
-
 def execute(event:, context:)
   Dotenv.load
   event["events"].each { |e| put_event(e) }
@@ -11,10 +9,14 @@ end
 
 private
 
+def table_name
+  "tyda-event"
+end
+
 def put_event(e)
   e.store("created_at", Time.now.to_s)
   item = {
-    table_name: TABLE_NAME,
+    table_name: table_name,
     item: e,
   }
   dynamo_client.put_item(item)

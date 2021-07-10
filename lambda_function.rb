@@ -2,6 +2,7 @@
 
 require 'json'
 require 'aws-sdk-dynamodb'
+require "active_support/all"
 
 # rubocop:disable Lint/UnusedMethodArgument
 def execute(event:, context:)
@@ -11,6 +12,7 @@ def execute(event:, context:)
 end
 
 def put_event(event)
+  set_time_zone
   event.store('created_at', Time.zone.now.to_s)
   item = {
     table_name: ENV['TABLE_NAME'],
@@ -24,6 +26,10 @@ def dynamo_client
     region: ENV['REGION'],
     credentials: credentials
   )
+end
+
+def set_time_zone
+  Time.zone = ENV['TIMEZONE']
 end
 
 def credentials

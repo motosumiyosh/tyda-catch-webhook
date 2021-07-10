@@ -38,3 +38,6 @@ def credentials
     ENV['SECRET_ACCESS_KEY']
   )
 end
+
+Time.zone = ENV['TIMEZONE']
+puts Time.zone.today

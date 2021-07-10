@@ -11,7 +11,7 @@ def execute(event:, context:)
 end
 
 def put_event(event)
-  event.store('created_at', Time.now.to_s)
+  event.store('created_at', Time.zone.now.to_s)
   item = {
     table_name: ENV['TABLE_NAME'],
     item: event

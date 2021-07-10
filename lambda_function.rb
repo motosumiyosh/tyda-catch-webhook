@@ -10,11 +10,11 @@ def execute(event:, context:)
   { execute_status: 'ok' }
 end
 
-def put_event(_event)
-  e.store('created_at', Time.now.to_s)
+def put_event(event)
+  event.store('created_at', Time.now.to_s)
   item = {
     table_name: ENV['TABLE_NAME'],
-    item: e
+    item: event
   }
   dynamo_client.put_item(item)
 end

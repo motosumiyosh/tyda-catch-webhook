@@ -1,12 +1,11 @@
 require 'json'
 require 'aws-sdk-dynamodb'
+require 'dotenv/load'
 
 def execute(event:, context:)
   event["events"].each { |e| put_event(e) }
   { execute_status: "ok" }
 end
-
-private
 
 def put_event(e)
   e.store("created_at", Time.now.to_s)
